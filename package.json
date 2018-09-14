@@ -1,0 +1,15 @@
+{
+  "name": "if-file-exists",
+  "version": "1.0.0",
+  "description": "Verify if file exists in the server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Diego Augusto da Silva",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-folders": "^1.1.0"
+  }
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    <title>Document</title>
+</head>
+<body ng-app="if-exists-app">
+ 
+    <div ng-controller="mainCtrl">
+        <img img-check="{{brand}}" alt="Imagem não carregou"/>
+    </div>
+<script>
+    var app = angular.module("if-exists-app", []);
+
+    var mainCtrl = function($scope){
+        $scope.brand = 'linx.jpg';
+        $scope.client = 'chaordic.png';
+    }
+
+    var imgCheckDirective = function($http){
+        return {
+            link: function(scope, element, attrs){
+                console.log('Scope: ', scope.brand);
+                console.log('Elements: ', element);
+                console.log('Attrs: ', attrs);
+                $http({
+                    method: 'GET',
+                    url: 'http://localhost/'+scope.brand
+                }).then(function success(response) {
+                    console.log('sucesso!');
+                }, function error(response) {
+                    console.log('erro!')
+                    attrs.$set('src',scope.client);
+                });
+            }
+        };
+    }
+
+    app.controller('mainCtrl', ['$scope',mainCtrl]).directive('imgCheck', ['$http', imgCheckDirective]);
+</script>
+</body>
+</html>
