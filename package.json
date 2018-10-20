@@ -9,7 +9,6 @@
   "author": "Diego Augusto da Silva",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-folders": "^1.1.0"
+    "gulp": "^4.0.0"
   }
 }
