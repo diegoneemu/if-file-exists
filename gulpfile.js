@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const folders = require('gulp-folders');
+const fs = require('fs');
 
 const styles = 'styles/*.scss';
 
@@ -17,18 +17,16 @@ function getThemeStyles(store){
     return theme;
 }
 
-gulp.task('theme-styles', folders('./themes/', function(store){
-    console.log('task: ', store);
-    return gulp.src([
-        getThemeStyles(store),
-        styles
-    ])
+const themestyles = function() {
+  const paths = fs.readdirSync('./themes')
+    .map(getThemeStyles);
+  paths.push(styles);
+  return gulp.src(paths)
     .pipe(gulp.dest('build'));
-}))
+};
 
-gulp.task('default', function(){
-    gulp.start('theme-styles');
-})
+gulp.task('default', themestyles);
+
 
 /**
  * gulp.task(
@@ -54,3 +52,4 @@ gulp.task('default', function(){
     })
 );
  */
+
